@@ -24,6 +24,7 @@ cinst adobe-creative-cloud -y
 cinst putty.install -y
 cinst teamviewer -y
 cinst poshgit -y
+cinst slack -y
 
 # Windows Features
 cinst Microsoft-Hyper-V-All -source windowsFeatures
