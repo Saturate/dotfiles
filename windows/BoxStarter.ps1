@@ -23,6 +23,7 @@ cinst tortoisesvn -y
 cinst adobe-creative-cloud -y
 cinst putty.install -y
 cinst teamviewer -y
+cinst poshgit -y
 
 # Windows Features
 cinst Microsoft-Hyper-V-All -source windowsFeatures
