@@ -22,7 +22,6 @@ cinst mongodb -y
 cinst nodejs.install -y
 cinst tortoisesvn -y
 cinst adobe-creative-cloud -y
-cinst putty.install -y
 cinst teamviewer -y
 cinst poshgit -y
 cinst slack -y
