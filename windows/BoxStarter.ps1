@@ -1,5 +1,6 @@
 # AKJ's Box Starter Script.
 # USE: Pase this into cmd/powershell "START http://boxstarter.org/package/nr/url?{RAW-URL-FOR-THIS-FILE}"
+# Example: START http://boxstarter.org/package/nr/url?https://raw.githubusercontent.com/Saturate/dotfiles/master/windows/BoxStarter.ps1
 
 # Windows Settings
 Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowFileExtensions
