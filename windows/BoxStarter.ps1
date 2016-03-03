@@ -34,8 +34,8 @@ cinst IIS-HttpCompressionDynamic -source windowsfeatures
 # Windows Config
 Install-ChocolateyPinnedTaskBarItem "$env:programfiles\Google\Chrome\Application\chrome.exe"
 
-# Node modules (Global)
-npm install -g gulp
+# Node Modules (Global)
+npm install -g gulp-cli
 npm install -g bower
 npm install -g yo
 npm install -g jshint
