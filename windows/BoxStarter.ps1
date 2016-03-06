@@ -8,23 +8,31 @@ Enable-RemoteDesktop
 Update-ExecutionPolicy Unrestricted
 
 # Chocolatey packages
-cinst fiddler4 -y
+
+## General
 cinst dropbox -y
-cinst Atom -y
-cinst spotify -y
-cinst vlc -y
-cinst googlechrome -y
-cinst firefox-dev -y 
-cinst steam -y
-cinst putty.install -y
 cinst 7zip.install -y
-cinst mongodb -y
-cinst nodejs.install -y
-cinst tortoisesvn -y
 cinst adobe-creative-cloud -y
 cinst teamviewer -y
-cinst poshgit -y
 cinst slack -y
+
+## Developer
+cinst Atom -y
+cinst poshgit -y
+cinst tortoisesvn -y
+cinst putty.install -y
+cinst googlechrome -y
+cinst firefox-dev -y
+cinst fiddler4 -y
+
+## Developer Enviorment
+cinst nodejs.install -y
+# cinst mongodb -y
+
+## Entertainment
+cinst steam -y
+cinst spotify -y
+cinst vlc -y
 
 # Windows Features
 cinst Microsoft-Hyper-V-All -source windowsFeatures
