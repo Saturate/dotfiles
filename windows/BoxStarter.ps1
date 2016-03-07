@@ -52,6 +52,7 @@ npm install -g jshint
 apm install minimap
 apm install project-manager
 apm install pigments
+apm install file-icons
 apm install language-nunjucks
 apm install language-powershell
 
