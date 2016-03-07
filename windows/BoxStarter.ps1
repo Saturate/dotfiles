@@ -50,7 +50,10 @@ npm install -g jshint
 
 # Atom Packages
 apm install minimap
+apm install project-manager
+apm install pigments
 apm install language-nunjucks
+apm install language-powershell
 
 # Windows Update
 Install-WindowsUpdate -AcceptEula
