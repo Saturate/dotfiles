@@ -55,6 +55,7 @@ apm install pigments
 apm install file-icons
 apm install language-nunjucks
 apm install language-powershell
+apm install editorconfig
 
 # Windows Update
 Install-WindowsUpdate -AcceptEula
