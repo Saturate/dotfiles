@@ -57,6 +57,7 @@ apm install language-nunjucks
 apm install language-powershell
 apm install language-docker
 apm install editorconfig
+apm install react
 
 # Windows Update
 Install-WindowsUpdate -AcceptEula
