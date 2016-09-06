@@ -58,6 +58,8 @@ apm install language-powershell
 apm install language-docker
 apm install editorconfig
 apm install react
+apm install linter
+apm install linter-eslint
 
 # Windows Update
 Install-WindowsUpdate -AcceptEula
