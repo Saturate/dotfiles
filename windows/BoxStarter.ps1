@@ -15,6 +15,7 @@ cinst 7zip.install -y
 cinst adobe-creative-cloud -y
 cinst teamviewer -y
 cinst slack -y
+cinst windirstat -y
 
 ## Developer
 cinst Atom -y
@@ -24,6 +25,8 @@ cinst putty.install -y
 cinst googlechrome -y
 cinst firefox-dev -y
 cinst fiddler4 -y
+cinst lockhunter -y
+cinst visualstudio2015enterprise -y
 
 ## Developer Enviorment
 cinst nodejs.install -y
@@ -37,7 +40,9 @@ cinst vlc -y
 # Windows Features
 cinst Microsoft-Hyper-V-All -source windowsFeatures
 cinst IIS-WebServerRole -source windowsfeatures
+cinst IIS-WebServer -source windowsfeatures
 cinst IIS-HttpCompressionDynamic -source windowsfeatures
+cinst IIS-Security -source windowsfeatures
 
 # Windows Config
 Install-ChocolateyPinnedTaskBarItem "$env:programfiles\Google\Chrome\Application\chrome.exe"
