@@ -66,5 +66,8 @@ apm install react
 apm install linter
 apm install linter-eslint
 
+# VS Code Packages
+code --install-extension donjayamanne.githistory
+
 # Windows Update
 Install-WindowsUpdate -AcceptEula
