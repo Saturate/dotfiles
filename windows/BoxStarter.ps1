@@ -68,6 +68,7 @@ apm install linter-eslint
 
 # VS Code Packages
 code --install-extension donjayamanne.githistory
+code --install-extension robertohuertasm.vscode-icons
 
 # Windows Update
 Install-WindowsUpdate -AcceptEula
