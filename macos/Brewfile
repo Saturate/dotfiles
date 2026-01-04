@@ -1,0 +1,76 @@
+# Brewfile - AKJ's macOS Package Manifest
+# Usage: brew bundle --file=Brewfile
+
+# =============================================================================
+# Taps
+# =============================================================================
+tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
+
+# =============================================================================
+# Core CLI Tools (always installed)
+# =============================================================================
+
+# Version Control
+brew "git"
+brew "gh"
+
+# JavaScript/TypeScript Runtimes
+brew "node"
+brew "nvm"
+brew "bun"
+brew "deno"
+
+# Programming Languages
+brew "go"
+brew "python@3.13"
+brew "rust"
+
+# Shell Enhancements
+brew "powerlevel10k"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+
+# Utilities
+brew "coreutils"
+brew "p7zip"
+brew "onefetch"
+brew "htop"
+brew "jq"
+brew "tree"
+brew "wget"
+
+# =============================================================================
+# Development Apps (Category: dev)
+# =============================================================================
+cask "visual-studio-code"
+cask "iterm2"
+cask "github"
+# cask "docker"  # Uncomment if needed
+
+# =============================================================================
+# Browsers (Category: browsers)
+# =============================================================================
+cask "firefox@developer-edition"
+# cask "google-chrome"  # Uncomment if needed
+
+# =============================================================================
+# Productivity Apps (Category: productivity)
+# =============================================================================
+cask "dropbox"
+cask "obsidian"
+cask "raycast"
+cask "1password"
+
+# =============================================================================
+# Entertainment (Category: entertainment)
+# =============================================================================
+cask "spotify"
+cask "notunes"
+
+# =============================================================================
+# Fonts
+# =============================================================================
+cask "font-fira-code"
+cask "font-jetbrains-mono"
+cask "font-meslo-lg-nerd-font"

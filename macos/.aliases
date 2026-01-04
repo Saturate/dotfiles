@@ -1,0 +1,120 @@
+# .aliases - Shell aliases
+# Sourced by .zshrc
+
+# =============================================================================
+# Navigation (from Linux .bash_profile)
+# =============================================================================
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ~='cd ~'
+alias -- -='cd -'
+
+# =============================================================================
+# Listing
+# =============================================================================
+alias ls='ls -G'
+alias ll='ls -lh'
+alias la='ls -lAh'
+alias l='ls -lAh'
+
+# =============================================================================
+# File Operations (safer defaults)
+# =============================================================================
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -iv'
+alias mkdir='mkdir -pv'
+
+# =============================================================================
+# Grep with Colors
+# =============================================================================
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# =============================================================================
+# Git Shortcuts
+# =============================================================================
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gaa='git add --all'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gp='git push'
+alias gpl='git pull'
+alias gf='git fetch'
+alias gb='git branch'
+alias gco='git checkout'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gl='git log --oneline --graph --decorate'
+alias glog='git log --oneline --graph --decorate --all'
+alias gst='git stash'
+alias gstp='git stash pop'
+
+# =============================================================================
+# Docker Shortcuts
+# =============================================================================
+alias d='docker'
+alias dc='docker compose'
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+alias di='docker images'
+
+# =============================================================================
+# npm/yarn/bun Shortcuts
+# =============================================================================
+alias ni='npm install'
+alias nr='npm run'
+alias ns='npm start'
+alias nt='npm test'
+alias nb='npm run build'
+
+alias yi='yarn install'
+alias ya='yarn add'
+alias yr='yarn run'
+
+alias bi='bun install'
+alias br='bun run'
+
+# =============================================================================
+# Python
+# =============================================================================
+alias py='python3'
+alias pip='pip3'
+
+# =============================================================================
+# macOS Specific
+# =============================================================================
+alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
+alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'
+alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
+alias emptytrash='sudo rm -rf ~/.Trash/*'
+alias cleanup='find . -type f -name "*.DS_Store" -ls -delete'
+alias lock='pmset displaysleepnow'
+
+# =============================================================================
+# Quick Config Editing
+# =============================================================================
+alias zshrc='${EDITOR:-code} ~/.zshrc'
+alias aliases='${EDITOR:-code} ~/.aliases'
+alias reload='source ~/.zshrc'
+
+# =============================================================================
+# Network
+# =============================================================================
+alias ip='curl -s ifconfig.me'
+alias localip='ipconfig getifaddr en0'
+
+# =============================================================================
+# SSH (from original Linux config)
+# =============================================================================
+alias s='ssh -l root'
+
+# =============================================================================
+# Editor
+# =============================================================================
+alias c='code .'
+alias code.='code .'

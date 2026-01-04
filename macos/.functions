@@ -1,0 +1,103 @@
+# .functions - Custom shell functions
+# Sourced by .zshrc
+
+# Create directory and cd into it
+mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+# Extract various archive formats
+extract() {
+    if [[ -f "$1" ]]; then
+        case "$1" in
+            *.tar.bz2)   tar xjf "$1"     ;;
+            *.tar.gz)    tar xzf "$1"     ;;
+            *.bz2)       bunzip2 "$1"     ;;
+            *.rar)       unrar x "$1"     ;;
+            *.gz)        gunzip "$1"      ;;
+            *.tar)       tar xf "$1"      ;;
+            *.tbz2)      tar xjf "$1"     ;;
+            *.tgz)       tar xzf "$1"     ;;
+            *.zip)       unzip "$1"       ;;
+            *.Z)         uncompress "$1"  ;;
+            *.7z)        7z x "$1"        ;;
+            *)           echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+# Kill process running on a specific port
+killport() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: killport <port>"
+        return 1
+    fi
+    lsof -ti:"$1" | xargs kill -9 2>/dev/null || echo "No process found on port $1"
+}
+
+# Quick HTTP server
+serve() {
+    local port="${1:-8000}"
+    echo "Serving on http://localhost:$port"
+    python3 -m http.server "$port"
+}
+
+# Weather
+weather() {
+    curl "wttr.in/${1:-}"
+}
+
+# Get size of directory or file
+sizeof() {
+    du -sh "${1:-.}"
+}
+
+# Open current directory in Finder
+finder() {
+    open "${1:-.}"
+}
+
+# Quick git commit with message
+gquick() {
+    git add -A && git commit -m "$1" && git push
+}
+
+# Create a new directory and initialize git
+ginit() {
+    mkdir -p "$1" && cd "$1" && git init
+}
+
+# Generate random password and copy to clipboard
+genpass() {
+    local length="${1:-32}"
+    openssl rand -base64 "$length" | tr -d '\n' | pbcopy
+    echo "Password ($length chars) copied to clipboard"
+}
+
+# Prettify JSON (from file or stdin)
+json() {
+    if [[ -t 0 ]]; then
+        python3 -m json.tool <<< "$*"
+    else
+        python3 -m json.tool
+    fi
+}
+
+# Show directory tree with gitignore support
+treeg() {
+    tree -I '.git|node_modules|vendor|__pycache__|.next|dist|build' "${@:-.}"
+}
+
+# Quick note
+note() {
+    local notes_dir="$HOME/Notes"
+    mkdir -p "$notes_dir"
+    if [[ -z "$1" ]]; then
+        ls -la "$notes_dir"
+    else
+        echo "$(date '+%Y-%m-%d %H:%M'): $*" >> "$notes_dir/quick.md"
+        echo "Note added"
+    fi
+}
