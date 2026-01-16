@@ -9,9 +9,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # =============================================================================
-# Path to dotfiles
+# Path to dotfiles (optional, for local development)
 # =============================================================================
-export DOTFILES="$HOME/code/dotfiles"
+if [[ -d "$HOME/code/github/dotfiles" ]]; then
+    export DOTFILES="$HOME/code/github/dotfiles"
+elif [[ -d "$HOME/dotfiles" ]]; then
+    export DOTFILES="$HOME/dotfiles"
+fi
 
 # =============================================================================
 # PATH Configuration
@@ -100,10 +104,6 @@ fi
 # =============================================================================
 # Source Additional Files
 # =============================================================================
-[[ -f "$DOTFILES/macos/.aliases" ]] && source "$DOTFILES/macos/.aliases"
-[[ -f "$DOTFILES/macos/.functions" ]] && source "$DOTFILES/macos/.functions"
-
-# Fallback to home directory symlinks
 [[ -f ~/.aliases ]] && source ~/.aliases
 [[ -f ~/.functions ]] && source ~/.functions
 
