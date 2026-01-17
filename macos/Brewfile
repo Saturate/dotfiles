@@ -13,7 +13,7 @@ tap "homebrew/cask-fonts"
 
 # Version Control
 brew "git"
-brew "gh"
+brew "gh"  # GitHub CLI
 
 # JavaScript/TypeScript Runtimes
 brew "node"
@@ -34,9 +34,9 @@ brew "zsh-syntax-highlighting"
 # Utilities
 brew "coreutils"
 brew "p7zip"
-brew "onefetch"
-brew "htop"
-brew "jq"
+brew "onefetch"  # Git repo info display (like neofetch for repos)
+brew "htop"  # Interactive process viewer
+brew "jq"  # JSON processor
 brew "tree"
 brew "wget"
 
@@ -47,11 +47,17 @@ cask "visual-studio-code"
 cask "iterm2"
 cask "github"
 cask "rancher"  # rancher desktop, free docker desktop replacement
+cask "utm"  # Virtual machines for macOS
+cask "ollama-app"  # Run LLMs locally
+cask "claude"  # Anthropic's AI assistant
+cask "claude-code"  # AI coding assistant (CLI)
+cask "bruno"  # API client (open source Postman alternative)
 
 # =============================================================================
 # Corporate Apps (sigh)
 # =============================================================================
 cask "microsoft-teams"
+cask "windows-app"  # Remote desktop client
 
 # =============================================================================
 # Browsers
@@ -63,14 +69,31 @@ cask "google-chrome@dev"
 # Productivity Apps
 # =============================================================================
 cask "dropbox"
-cask "obsidian"
-cask "raycast"
+cask "obsidian"  # Markdown knowledge base
+cask "raycast"  # Spotlight replacement with extensions
 cask "1password"
 
 # =============================================================================
 # Entertainment
 # =============================================================================
 cask "spotify"
+cask "discord"
+
+# =============================================================================
+# Terminal Toys
+# =============================================================================
+brew "cowsay"  # ASCII cow with speech bubble
+brew "asciiquarium"  # Aquarium in your terminal
+brew "cmatrix"  # Matrix-style falling text
+brew "lolcat"  # Rainbow colored output
+
+# =============================================================================
+# Security / Pentesting (Use KALI via. UTM for more tools)
+# =============================================================================
+brew "nmap"  # Network scanner
+brew "rustscan"  # Fast port scanner
+brew "trufflehog"  # Find secrets in git repos
+cask "ghidra"  # Reverse engineering tool (NSA)
 
 # =============================================================================
 # Fonts
