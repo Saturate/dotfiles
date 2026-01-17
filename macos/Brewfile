@@ -4,8 +4,6 @@
 # =============================================================================
 # Taps
 # =============================================================================
-tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 tap "oven-sh/bun"
 
 # =============================================================================
@@ -93,7 +91,7 @@ brew "lolcat"  # Rainbow colored output
 brew "nmap"  # Network scanner
 brew "rustscan"  # Fast port scanner
 brew "trufflehog"  # Find secrets in git repos
-cask "ghidra"  # Reverse engineering tool (NSA)
+brew "ghidra"  # Reverse engineering tool (NSA)
 
 # =============================================================================
 # Fonts
