@@ -1,4 +1,4 @@
-# Brewfile - AKJ's macOS Package Manifest
+# Brewfile - Saturate's macOS Package Manifest
 # Usage: brew bundle --file=Brewfile
 
 # =============================================================================
@@ -8,7 +8,7 @@ tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 
 # =============================================================================
-# Core CLI Tools (always installed)
+# Core CLI Tools
 # =============================================================================
 
 # Version Control
@@ -41,21 +41,26 @@ brew "tree"
 brew "wget"
 
 # =============================================================================
-# Development Apps (Category: dev)
+# Development Apps
 # =============================================================================
 cask "visual-studio-code"
 cask "iterm2"
 cask "github"
-# cask "docker"  # Uncomment if needed
+cask "rancher"  # rancher desktop, free docker desktop replacement
 
 # =============================================================================
-# Browsers (Category: browsers)
+# Corporate Apps (sigh)
+# =============================================================================
+cask "microsoft-teams"
+
+# =============================================================================
+# Browsers
 # =============================================================================
 cask "firefox@developer-edition"
-# cask "google-chrome"  # Uncomment if needed
+cask "google-chrome@dev"
 
 # =============================================================================
-# Productivity Apps (Category: productivity)
+# Productivity Apps
 # =============================================================================
 cask "dropbox"
 cask "obsidian"
@@ -63,10 +68,9 @@ cask "raycast"
 cask "1password"
 
 # =============================================================================
-# Entertainment (Category: entertainment)
+# Entertainment
 # =============================================================================
 cask "spotify"
-cask "notunes"
 
 # =============================================================================
 # Fonts
