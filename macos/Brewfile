@@ -6,6 +6,7 @@
 # =============================================================================
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
+tap "oven-sh/bun"
 
 # =============================================================================
 # Core CLI Tools
@@ -18,8 +19,7 @@ brew "gh"  # GitHub CLI
 # JavaScript/TypeScript Runtimes
 brew "node"
 brew "nvm"
-tap "oven-sh/bun"
-brew "bun"
+brew "oven-sh/bun/bun"
 
 # Programming Languages
 brew "go"
