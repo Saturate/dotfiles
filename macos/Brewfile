@@ -18,8 +18,8 @@ brew "gh"
 # JavaScript/TypeScript Runtimes
 brew "node"
 brew "nvm"
+tap "oven-sh/bun"
 brew "bun"
-brew "deno"
 
 # Programming Languages
 brew "go"
