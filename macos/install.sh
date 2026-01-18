@@ -80,7 +80,7 @@ install_xcode_cli() {
         echo ""
         warn "Please wait for the Xcode CLI tools installation to complete"
         echo "Press any key when the installation is complete..."
-        read -n 1 -s
+        read -n 1 -s </dev/tty
         echo ""
     fi
 }
@@ -128,7 +128,7 @@ offer_brewfile_edit() {
     echo "The Brewfile contains all packages and apps that will be installed."
     echo "Location: $BREWFILE"
     echo ""
-    read -p "Would you like to review/edit the Brewfile before installing? (y/n) " -n 1 -r
+    read -p "Would you like to review/edit the Brewfile before installing? (y/n) " -n 1 -r </dev/tty
     echo ""
 
     if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -258,7 +258,7 @@ main() {
     echo "  • Install dotfiles to your home directory"
     echo ""
 
-    read -p "Press Enter to continue or Ctrl+C to cancel..."
+    read -p "Press Enter to continue or Ctrl+C to cancel..." </dev/tty
     echo ""
 
     check_macos
