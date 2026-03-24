@@ -21,8 +21,18 @@ mouse-scroll-multiplier = 0.95
 copy-on-select = clipboard
 clipboard-paste-protection = false
 
-# Theme (override in OS-specific config or ~/.config/ghostty/config)
-# theme = catppuccin-mocha
+# Theme
+theme = Brogrammer
+
+# Colors
+window-colorspace = display-p3
+
+# Quick terminal (quake-style dropdown)
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+quick-terminal-animation-duration = 0.0
+
+# SSH
+shell-integration-features = ssh-terminfo
 
 # Keybindings
 keybind = shift+insert=paste_from_clipboard
