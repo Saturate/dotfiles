@@ -146,5 +146,12 @@ deactivate() { _lazy_conda_init && conda deactivate "$@" }
 [[ -f ~/.aliases ]] && source ~/.aliases
 [[ -f ~/.functions ]] && source ~/.functions
 
+# Secrets (managed by 1Password)
+if [[ -f ~/.env ]]; then
+    set -a
+    source ~/.env
+    set +a
+fi
+
 # Local overrides (not in git)
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
