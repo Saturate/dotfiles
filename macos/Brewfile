@@ -25,15 +25,28 @@ brew "python@3.13"
 brew "rust"
 
 # Shell Enhancements
-brew "powerlevel10k"
+brew "starship"              # Cross-platform prompt (replaces powerlevel10k)
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
+
+# Tiling Window Manager
+cask "nikitabobko/tap/aerospace"
+
+# Modern CLI Tools
+brew "eza"         # Modern ls replacement with icons and git status
+brew "bat"         # Cat with syntax highlighting
+brew "fd"          # Modern find replacement
+brew "ripgrep"     # Modern grep replacement (rg)
+brew "zoxide"      # Smarter cd that learns your habits
+brew "fzf"         # Fuzzy finder for everything
+brew "delta"       # Better git diff pager with syntax highlighting
+brew "btop"        # Modern system monitor (replaces htop)
+brew "tldr"        # Simplified man pages
 
 # Utilities
 brew "coreutils"
 brew "p7zip"
 brew "onefetch"  # Git repo info display (like neofetch for repos)
-brew "htop"  # Interactive process viewer
 brew "jq"  # JSON processor
 brew "tree"
 brew "wget"
@@ -42,7 +55,7 @@ brew "wget"
 # Development Apps
 # =============================================================================
 cask "visual-studio-code"
-cask "iterm2"
+cask "ghostty"
 cask "github"
 cask "rancher"  # rancher desktop, free docker desktop replacement
 cask "utm"  # Virtual machines for macOS

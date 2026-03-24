@@ -1,0 +1,46 @@
+# Starship Prompt Configuration
+# Shared across macOS, Linux, and Windows
+# Aligned with Omarchy's starship setup
+
+command_timeout = 200
+add_newline = true
+
+[character]
+success_symbol = "[❯](bold cyan)"
+error_symbol = "[✗](bold red)"
+
+[directory]
+style = "cyan"
+truncation_length = 2
+truncation_symbol = "…/"
+
+[git_branch]
+style = "italic cyan"
+
+[git_status]
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+untracked = "?"
+modified = "◆"
+staged = "●"
+deleted = "✘"
+
+[nodejs]
+format = "[$symbol($version)]($style) "
+
+[python]
+format = "[$symbol($version)]($style) "
+
+[rust]
+format = "[$symbol($version)]($style) "
+
+[golang]
+format = "[$symbol($version)]($style) "
+
+[docker_context]
+format = "[$symbol$context]($style) "
+
+[cmd_duration]
+min_time = 2000
+format = "[$duration]($style) "

@@ -9,6 +9,7 @@
 # - Optionally lets you edit the Brewfile
 # - Installs all packages from macos/Brewfile
 # - Links dotfiles to your home directory
+# - Deploys shared configs (git, starship, ghostty)
 #
 
 set -e
@@ -38,6 +39,7 @@ GITHUB_RAW="https://raw.githubusercontent.com/Saturate/dotfiles/master/macos"
 if [[ -n "${BASH_SOURCE[0]}" && -f "${BASH_SOURCE[0]}" ]]; then
     # Local execution
     LOCAL_REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    REPO_ROOT="$(cd "$LOCAL_REPO/.." && pwd)"
     BREWFILE="$LOCAL_REPO/Brewfile"
     REMOTE_MODE=false
 else
@@ -178,9 +180,10 @@ install_packages() {
 install_dotfiles() {
     header "Installing Dotfiles"
 
-    local files=(".zshrc" ".zprofile" ".aliases" ".functions")
+    # Shell dotfiles -> home directory
+    local shell_files=(".zshrc" ".zprofile" ".aliases" ".functions" ".aerospace.toml")
 
-    for file in "${files[@]}"; do
+    for file in "${shell_files[@]}"; do
         local target="$HOME/$file"
 
         # Backup existing file
@@ -191,11 +194,9 @@ install_dotfiles() {
         fi
 
         if [[ "$REMOTE_MODE" == true ]]; then
-            # Download directly to home directory
             info "Downloading $file..."
             curl -fsSL "$GITHUB_RAW/$file" -o "$target"
         else
-            # Copy from local repo
             local source="$LOCAL_REPO/$file"
             if [[ ! -f "$source" ]]; then
                 warn "Source file not found: $source (skipping)"
@@ -207,6 +208,51 @@ install_dotfiles() {
 
         info "Installed $file"
     done
+}
+
+install_shared_configs() {
+    header "Installing Shared Configs"
+
+    if [[ "$REMOTE_MODE" == true ]]; then
+        warn "Shared configs require local repo clone (skipping)"
+        return
+    fi
+
+    local common_dir="$REPO_ROOT/common"
+
+    # Starship prompt config
+    local starship_dir="$HOME/.config"
+    mkdir -p "$starship_dir"
+    if [[ -f "$common_dir/starship.toml" ]]; then
+        cp "$common_dir/starship.toml" "$starship_dir/starship.toml"
+        info "Installed starship.toml"
+    fi
+
+    # Ghostty terminal config
+    local ghostty_dir="$HOME/.config/ghostty"
+    mkdir -p "$ghostty_dir"
+    if [[ -f "$common_dir/ghostty/config" ]]; then
+        cp "$common_dir/ghostty/config" "$ghostty_dir/config"
+        info "Installed ghostty config"
+    fi
+
+    # Git config
+    if [[ -f "$common_dir/.gitconfig" ]]; then
+        cp "$common_dir/.gitconfig" "$HOME/.gitconfig"
+        info "Installed .gitconfig"
+
+        # Check if 1Password SSH signing is configured
+        if ! git config --global gpg.ssh.program &>/dev/null; then
+            warn "1Password SSH signing not configured"
+            warn "Open 1Password → Settings → Developer → enable 'Sign Git commits with SSH'"
+        fi
+    fi
+
+    # EditorConfig
+    if [[ -f "$common_dir/.editorconfig" ]]; then
+        cp "$common_dir/.editorconfig" "$HOME/.editorconfig"
+        info "Installed .editorconfig"
+    fi
 }
 
 # =============================================================================
@@ -228,12 +274,9 @@ show_completion() {
     info "Next steps:"
     echo ""
     echo "  1. Restart your terminal (or run: source ~/.zshrc)"
-    echo "  2. Configure Powerlevel10k prompt: p10k configure"
+    echo "  2. Edit ~/.gitconfig.local with your name and email"
     echo "  3. Sign into your accounts (iCloud, 1Password, etc.)"
     echo "  4. Generate SSH keys: ssh-keygen -t ed25519 -C \"your_email@example.com\""
-    echo "  5. Configure Git:"
-    echo "     git config --global user.name \"Your Name\""
-    echo "     git config --global user.email \"your_email@example.com\""
     echo ""
     warn "Some changes may require a logout/restart to take effect"
     echo ""
@@ -256,6 +299,7 @@ main() {
     echo "  • Install Homebrew"
     echo "  • Install packages from Brewfile"
     echo "  • Install dotfiles to your home directory"
+    echo "  • Deploy shared configs (git, starship, ghostty)"
     echo ""
 
     read -p "Press Enter to continue or Ctrl+C to cancel..." </dev/tty
@@ -267,6 +311,7 @@ main() {
     offer_brewfile_edit
     install_packages
     install_dotfiles
+    install_shared_configs
     show_completion
 }
 

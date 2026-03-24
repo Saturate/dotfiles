@@ -1,0 +1,65 @@
+# Shared Git Configuration
+
+[user]
+    name = Allan Kimmer Jensen
+    email = hi@akj.io
+    signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCYkYPq71fCl7eqTAnat1M43TDRFZekDWZrlxORMuEJTZqY148Pfi8Ai/wBnbPnFc5CZHEbMY2EYNUCLEFuvWVGwkTfPcsJjdwGWwuaENwRDGcBk779p71V/miY94bTZbexum6jfx/UmKDaZih/Dqn2I83bkZ/kQ3Usv6wCWmBsh4fgn9Z0W0XUx69vMv8Z/SbuAOwrbTMLH7gm2cVTdUZBnvoN3Wz7oXfBcdeEw6qHdWbNneCvCZwJ+Ye21lQ1Qb0htqsUpl+NFkspB42EGbJk94tlpNR2B5ab/c9JfHFjJ6zcCki7AE6R/M6sDTbqWYUAII112nfJ1Y5RZBHlvrZDs79xegdI+/GKBPdEkX2VvkoGD8fYmx/++bWo104nLnnjFsr0LdlDxm7yVgr6i2VEbHXRDECnyttU664x7w6634uSa1g/irTtDnZKpxvoJ672Cm+UmmkT2zpmQtnUaEceK2MMD6rK1iYHq2lAa2quMHounJgV9d+XNiNJWVsq3VhFMGIt0ZirCh+BmY5fTAzfIxpmWuPfkFHusIkL27ke0DZS1w35/iSnRX6wH/9Cg2OEGqvHLNW6cZVq9ZLPHyed1qmAzGBUqGpOU4cior7EJ/lEaJTSyS3PLWCbRnqSUCXhqbbsr9mU2Gx5i9GQW6c4mE9/f93FOkKLKYEm4WjCZQ==
+
+# 1Password SSH signing
+[gpg]
+    format = ssh
+
+# 1Password sets these automatically per OS — shown here for reference:
+# [gpg "ssh"]
+#     program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign  # macOS
+#     program = /opt/1Password/op-ssh-sign                              # Linux
+#     program = C:/Users/YOU/AppData/Local/1Password/app/8/op-ssh-sign.exe  # Windows
+
+[commit]
+    gpgsign = true
+
+[tag]
+    gpgsign = true
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[push]
+    autoSetupRemote = true
+
+[rebase]
+    autoStash = true
+
+[rerere]
+    enabled = true
+
+[diff]
+    algorithm = histogram
+    colorMoved = default
+
+[merge]
+    conflictstyle = zdiff3
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    side-by-side = true
+    line-numbers = true
+
+[alias]
+    co = checkout
+    br = branch
+    ci = commit
+    st = status
+    sw = switch
+    unstage = reset HEAD --
+    last = log -1 HEAD
+    lg = log --oneline --graph --decorate --all

@@ -1,0 +1,29 @@
+# Ghostty Terminal Configuration
+# Shared across macOS and Linux (Omarchy-aligned)
+
+# Font
+font-family = "JetBrainsMono Nerd Font"
+font-size = 13
+
+# Window
+window-padding-x = 14
+window-padding-y = 14
+window-decoration = auto
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# Mouse
+mouse-scroll-multiplier = 0.95
+
+# Clipboard
+copy-on-select = clipboard
+clipboard-paste-protection = false
+
+# Theme (override in OS-specific config or ~/.config/ghostty/config)
+# theme = catppuccin-mocha
+
+# Keybindings
+keybind = shift+insert=paste_from_clipboard
+keybind = ctrl+insert=copy_to_clipboard

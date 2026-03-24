@@ -185,6 +185,16 @@ defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
 # =============================================================================
+# Tiling WM Helpers (AeroSpace)
+# =============================================================================
+
+# Drag windows from anywhere with Ctrl+Cmd
+defaults write -g NSWindowShouldDragOnGesture -bool true
+
+# Disable window opening animations (cleaner tiling)
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
+
+# =============================================================================
 # Restart affected applications
 # =============================================================================
 

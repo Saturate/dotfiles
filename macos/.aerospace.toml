@@ -1,0 +1,125 @@
+# AeroSpace Tiling Window Manager Configuration
+# Aligned with Omarchy's Hyprland keybindings for cross-platform muscle memory
+#
+# alt-cmd (Option+Cmd) = SUPER equivalent on macOS
+# Using alt-cmd avoids conflicts with macOS system shortcuts and special characters
+# Omarchy: Super+Return (terminal), Super+Shift+Q (close), Super+h/j/k/l (focus)
+
+config-version = 2
+start-at-login = true
+auto-reload-config = true
+
+# Normalization keeps the tree clean
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+# Mouse follows focus across monitors (Omarchy: follow_mouse = 1)
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# Omarchy-aligned gaps (5 inner, 10 outer)
+[gaps]
+    inner.horizontal = 5
+    inner.vertical =   5
+    outer.left =       10
+    outer.bottom =     10
+    outer.top =        10
+    outer.right =      10
+
+[key-mapping]
+    preset = 'qwerty'
+
+# Omarchy uses workspaces 1-5 persistent, we keep 1-9 for flexibility
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+# =============================================================================
+# Main keybindings (Omarchy Hyprland-aligned, alt-cmd as mod)
+# =============================================================================
+[mode.main.binding]
+
+    # Terminal — Omarchy: Super+Return -> Ghostty
+    alt-cmd-enter = 'exec-and-forget open -na Ghostty'
+
+    # Close window — Omarchy: Super+Shift+Q -> killactive
+    alt-cmd-shift-q = 'close'
+
+    # Focus — Omarchy: Super+h/j/k/l -> movefocus
+    alt-cmd-h = 'focus left'
+    alt-cmd-j = 'focus down'
+    alt-cmd-k = 'focus up'
+    alt-cmd-l = 'focus right'
+
+    # Move windows — Omarchy: Super+Shift+h/j/k/l -> movewindow
+    alt-cmd-shift-h = 'move left'
+    alt-cmd-shift-j = 'move down'
+    alt-cmd-shift-k = 'move up'
+    alt-cmd-shift-l = 'move right'
+
+    # Resize — Omarchy: Super+minus/equal -> resizeactive
+    alt-cmd-minus = 'resize smart -50'
+    alt-cmd-equal = 'resize smart +50'
+
+    # Toggle layout — Omarchy: Super+v -> togglesplit (dwindle)
+    alt-cmd-slash = 'layout tiles horizontal vertical'
+    alt-cmd-comma = 'layout accordion horizontal vertical'
+
+    # Fullscreen — Omarchy: Super+F -> fullscreen
+    alt-cmd-f = 'fullscreen'
+
+    # Switch workspaces — Omarchy: Super+1-9 -> workspace
+    alt-cmd-1 = 'workspace 1'
+    alt-cmd-2 = 'workspace 2'
+    alt-cmd-3 = 'workspace 3'
+    alt-cmd-4 = 'workspace 4'
+    alt-cmd-5 = 'workspace 5'
+    alt-cmd-6 = 'workspace 6'
+    alt-cmd-7 = 'workspace 7'
+    alt-cmd-8 = 'workspace 8'
+    alt-cmd-9 = 'workspace 9'
+
+    # Move window to workspace — Omarchy: Super+Shift+1-9 -> movetoworkspace
+    alt-cmd-shift-1 = 'move-node-to-workspace 1'
+    alt-cmd-shift-2 = 'move-node-to-workspace 2'
+    alt-cmd-shift-3 = 'move-node-to-workspace 3'
+    alt-cmd-shift-4 = 'move-node-to-workspace 4'
+    alt-cmd-shift-5 = 'move-node-to-workspace 5'
+    alt-cmd-shift-6 = 'move-node-to-workspace 6'
+    alt-cmd-shift-7 = 'move-node-to-workspace 7'
+    alt-cmd-shift-8 = 'move-node-to-workspace 8'
+    alt-cmd-shift-9 = 'move-node-to-workspace 9'
+
+    # Workspace switching — Omarchy: Super+Tab
+    alt-cmd-tab = 'workspace-back-and-forth'
+
+    # Move workspace to next monitor
+    alt-cmd-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+    # File manager — Omarchy: Super+Shift+F -> nautilus (Finder on macOS)
+    alt-cmd-shift-f = 'exec-and-forget open ~'
+
+    # Browser — Omarchy: Super+Shift+Return
+    alt-cmd-shift-enter = 'exec-and-forget open -a "Firefox Developer Edition"'
+
+    # Editor — Omarchy: Super+Shift+N -> launch-editor
+    alt-cmd-shift-n = 'exec-and-forget open -a "Visual Studio Code"'
+
+    # Service mode (like Hyprland submap)
+    alt-cmd-shift-semicolon = 'mode service'
+
+# =============================================================================
+# Service mode
+# =============================================================================
+[mode.service.binding]
+    esc = ['reload-config', 'mode main']
+    r = ['flatten-workspace-tree', 'mode main']
+    f = ['layout floating tiling', 'mode main']
+    backspace = ['close-all-windows-but-current', 'mode main']
+
+    # Join with adjacent windows
+    alt-cmd-shift-h = ['join-with left', 'mode main']
+    alt-cmd-shift-j = ['join-with down', 'mode main']
+    alt-cmd-shift-k = ['join-with up', 'mode main']
+    alt-cmd-shift-l = ['join-with right', 'mode main']

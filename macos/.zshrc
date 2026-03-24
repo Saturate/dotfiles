@@ -1,14 +1,6 @@
 # .zshrc - AKJ's Zsh Configuration
 
 # =============================================================================
-# Instant Prompt (Powerlevel10k)
-# =============================================================================
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# =============================================================================
 # Path to dotfiles (optional, for local development)
 # =============================================================================
 if [[ -d "$HOME/code/github/dotfiles" ]]; then
@@ -73,16 +65,9 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' menu select
 
 # =============================================================================
-# Powerlevel10k Theme
+# Prompt (Starship - cross-platform, shared config)
 # =============================================================================
-if [[ -f /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme ]]; then
-    source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-elif [[ -f /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme ]]; then
-    source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
-fi
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+eval "$(starship init zsh)"
 
 # =============================================================================
 # Plugin Loading (Homebrew-installed)
@@ -102,17 +87,14 @@ elif [[ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
 fi
 
 # =============================================================================
-# Source Additional Files
-# =============================================================================
-[[ -f ~/.aliases ]] && source ~/.aliases
-[[ -f ~/.functions ]] && source ~/.functions
-
-# Local overrides (not in git)
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
-
-# =============================================================================
 # Tool Initializations
 # =============================================================================
+# zoxide (smarter cd)
+eval "$(zoxide init zsh)"
+
+# fzf keybindings and completion
+source <(fzf --zsh)
+
 # NVM (Node Version Manager)
 export NVM_DIR="$HOME/.nvm"
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
@@ -122,3 +104,12 @@ export NVM_DIR="$HOME/.nvm"
 [[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# =============================================================================
+# Source Additional Files
+# =============================================================================
+[[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f ~/.functions ]] && source ~/.functions
+
+# Local overrides (not in git)
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

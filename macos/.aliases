@@ -2,7 +2,7 @@
 # Sourced by .zshrc
 
 # =============================================================================
-# Navigation (from Linux .bash_profile)
+# Navigation
 # =============================================================================
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -11,12 +11,22 @@ alias ~='cd ~'
 alias -- -='cd -'
 
 # =============================================================================
-# Listing
+# Listing (eza replaces ls)
 # =============================================================================
-alias ls='ls -G'
-alias ll='ls -lh'
-alias la='ls -lAh'
-alias l='ls -lAh'
+alias ls='eza --icons'
+alias ll='eza -lh --icons'
+alias la='eza -lah --icons'
+alias l='eza -lah --icons'
+alias lt='eza -lah --icons --tree --level=2'
+
+# =============================================================================
+# Modern CLI Replacements
+# =============================================================================
+alias cat='bat --paging=never'
+alias find='fd'
+alias grep='rg'
+alias du='dust'
+alias top='btop'
 
 # =============================================================================
 # File Operations (safer defaults)
@@ -25,13 +35,6 @@ alias cp='cp -iv'
 alias mv='mv -iv'
 alias rm='rm -iv'
 alias mkdir='mkdir -pv'
-
-# =============================================================================
-# Grep with Colors
-# =============================================================================
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 
 # =============================================================================
 # Git Shortcuts
@@ -47,6 +50,7 @@ alias gpl='git pull'
 alias gf='git fetch'
 alias gb='git branch'
 alias gco='git checkout'
+alias gsw='git switch'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gl='git log --oneline --graph --decorate'
@@ -109,7 +113,7 @@ alias ip='curl -s ifconfig.me'
 alias localip='ipconfig getifaddr en0'
 
 # =============================================================================
-# SSH (from original Linux config)
+# SSH
 # =============================================================================
 alias s='ssh -l root'
 
