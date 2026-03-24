@@ -122,3 +122,9 @@ alias s='ssh -l root'
 # =============================================================================
 alias c='code .'
 alias code.='code .'
+
+# =============================================================================
+# Shortcuts
+# =============================================================================
+alias notes='cd "$HOME/Library/CloudStorage/Dropbox/Obsidian/Allan/"'
+alias clauded='claude --dangerously-skip-permissions'
