@@ -41,6 +41,7 @@ $packages = @(
 
     # Dev tools
     "Microsoft.VisualStudioCode"
+    "Neovim.Neovim"
     "Git.Git"
     "GitHub.cli"
     "Ghostty.Ghostty"
@@ -128,6 +129,21 @@ Write-Host "  Installed Ghostty config" -ForegroundColor Green
 # Git
 Copy-Item "$commonDir\.gitconfig" "$env:USERPROFILE\.gitconfig" -Force
 Write-Host "  Installed .gitconfig" -ForegroundColor Green
+
+# Neovim (LazyVim)
+$nvimDir = "$env:LOCALAPPDATA\nvim"
+if (-not (Test-Path $nvimDir)) {
+    Write-Host "  Bootstrapping LazyVim..." -ForegroundColor Gray
+    git clone https://github.com/LazyVim/starter $nvimDir
+    Remove-Item "$nvimDir\.git" -Recurse -Force
+} else {
+    Write-Host "  Neovim config already exists (skipping LazyVim bootstrap)" -ForegroundColor Gray
+}
+# Apply custom options on top of LazyVim
+$nvimOptionsDir = "$nvimDir\lua\config"
+if (-not (Test-Path $nvimOptionsDir)) { New-Item -ItemType Directory -Path $nvimOptionsDir -Force | Out-Null }
+Copy-Item "$commonDir\nvim\lua\config\options.lua" "$nvimOptionsDir\options.lua" -Force
+Write-Host "  Installed nvim custom options" -ForegroundColor Green
 
 # Check 1Password SSH signing
 $sshProgram = git config --global gpg.ssh.program 2>$null

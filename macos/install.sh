@@ -248,6 +248,20 @@ install_shared_configs() {
         fi
     fi
 
+    # Neovim (LazyVim)
+    if [[ ! -d "$HOME/.config/nvim" ]]; then
+        info "Bootstrapping LazyVim..."
+        git clone https://github.com/LazyVim/starter "$HOME/.config/nvim"
+        rm -rf "$HOME/.config/nvim/.git"
+    else
+        info "Neovim config already exists (skipping LazyVim bootstrap)"
+    fi
+    # Apply custom options on top of LazyVim
+    if [[ -f "$common_dir/nvim/lua/config/options.lua" ]]; then
+        cp "$common_dir/nvim/lua/config/options.lua" "$HOME/.config/nvim/lua/config/options.lua"
+        info "Installed nvim custom options"
+    fi
+
     # EditorConfig
     if [[ -f "$common_dir/.editorconfig" ]]; then
         cp "$common_dir/.editorconfig" "$HOME/.editorconfig"

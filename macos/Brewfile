@@ -61,6 +61,7 @@ brew "wget"
 # Development Apps
 # =============================================================================
 cask "visual-studio-code"
+brew "neovim"
 cask "ghostty"
 cask "github"
 cask "rancher"  # rancher desktop, free docker desktop replacement
