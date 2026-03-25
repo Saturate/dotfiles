@@ -51,7 +51,7 @@ weather() {
 
 # Get size of directory or file
 sizeof() {
-    du -sh "${1:-.}"
+    command du -sh "${1:-.}"
 }
 
 # Open current directory in Finder

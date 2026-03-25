@@ -256,6 +256,35 @@ install_shared_configs() {
 }
 
 # =============================================================================
+# macOS Defaults
+# =============================================================================
+
+offer_macos_defaults() {
+    if [[ "$REMOTE_MODE" == true ]]; then
+        return
+    fi
+
+    local defaults_script="$LOCAL_REPO/macos-defaults.sh"
+    if [[ ! -f "$defaults_script" ]]; then
+        return
+    fi
+
+    header "macOS System Defaults"
+
+    echo "This will apply opinionated macOS defaults (Dock, Finder, screenshots, etc.)"
+    echo ""
+    read -p "Apply macOS defaults? (y/n) " -n 1 -r </dev/tty
+    echo ""
+
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        bash "$defaults_script"
+        info "macOS defaults applied"
+    else
+        info "Skipped macOS defaults"
+    fi
+}
+
+# =============================================================================
 # Completion Message
 # =============================================================================
 
@@ -274,9 +303,8 @@ show_completion() {
     info "Next steps:"
     echo ""
     echo "  1. Restart your terminal (or run: source ~/.zshrc)"
-    echo "  2. Edit ~/.gitconfig.local with your name and email"
-    echo "  3. Sign into your accounts (iCloud, 1Password, etc.)"
-    echo "  4. Generate SSH keys: ssh-keygen -t ed25519 -C \"your_email@example.com\""
+    echo "  2. Sign into 1Password and enable SSH agent + git signing"
+    echo "  3. Sign into your accounts (iCloud, Dropbox, etc.)"
     echo ""
     warn "Some changes may require a logout/restart to take effect"
     echo ""
@@ -312,6 +340,7 @@ main() {
     install_packages
     install_dotfiles
     install_shared_configs
+    offer_macos_defaults
     show_completion
 }
 

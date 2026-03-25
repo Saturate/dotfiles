@@ -23,6 +23,11 @@ brew "oven-sh/bun/bun"
 brew "go"
 brew "python@3.13"
 brew "rust"
+brew "dotnet@8"
+
+# Package Managers
+brew "pnpm"
+cask "miniconda"
 
 # Shell Enhancements
 brew "starship"              # Cross-platform prompt (replaces powerlevel10k)
@@ -41,6 +46,7 @@ brew "zoxide"      # Smarter cd that learns your habits
 brew "fzf"         # Fuzzy finder for everything
 brew "delta"       # Better git diff pager with syntax highlighting
 brew "btop"        # Modern system monitor (replaces htop)
+brew "dust"        # Modern du replacement
 brew "tldr"        # Simplified man pages
 
 # Utilities
