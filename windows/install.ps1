@@ -153,6 +153,22 @@ if (-not $sshProgram) {
 }
 
 # =============================================================================
+# Claude Code Config
+# =============================================================================
+
+Write-Host "`nSetting up Claude Code configuration..." -ForegroundColor Cyan
+
+$claudeRepo = "$env:USERPROFILE\code\github\claude"
+if (-not (Test-Path $claudeRepo)) {
+    New-Item -ItemType Directory -Path "$env:USERPROFILE\code\github" -Force | Out-Null
+    git clone https://github.com/Saturate/claude.git $claudeRepo
+    Write-Host "  Cloned Claude config repo" -ForegroundColor Green
+} else {
+    git -C $claudeRepo pull
+    Write-Host "  Updated Claude config repo" -ForegroundColor Green
+}
+
+# =============================================================================
 # Done
 # =============================================================================
 
@@ -162,5 +178,5 @@ Write-Host "========================================`n" -ForegroundColor Green
 Write-Host "Next steps:" -ForegroundColor Cyan
 Write-Host "  1. Restart your terminal"
 Write-Host "  2. Sign into 1Password and enable SSH agent + git signing"
-Write-Host "  3. Run 'p10k configure' if using PowerShell profile"
+Write-Host "  3. Run Claude config install: cd ~/code/github/claude && bash install.sh"
 Write-Host ""

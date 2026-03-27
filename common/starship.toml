@@ -1,46 +1,86 @@
 # Starship Prompt Configuration
-# Shared across macOS, Linux, and Windows
-# Aligned with Omarchy's starship setup
+# p10k-inspired look, shared across macOS, Linux, and Windows
 
-command_timeout = 200
+command_timeout = 500
 add_newline = true
 
-[character]
-success_symbol = "[❯](bold cyan)"
-error_symbol = "[✗](bold red)"
+# Two-line prompt with powerline style
+format = """
+[](blue)\
+[$directory](bg:blue fg:white bold)\
+[](fg:blue bg:yellow)\
+[$git_branch$git_status](bg:yellow fg:black)\
+[](fg:yellow)\
+$nodejs$python$rust$golang$docker_context$dotnet\
+$fill\
+$cmd_duration\
+$time\
+$line_break\
+$character"""
+
+right_format = ""
+
+[fill]
+symbol = " "
 
 [directory]
-style = "cyan"
-truncation_length = 2
+format = "[ $path ]($style)"
+style = "bg:blue fg:white bold"
+truncation_length = 3
 truncation_symbol = "…/"
 
 [git_branch]
-style = "italic cyan"
+format = "[ $symbol$branch ]($style)"
+style = "bg:yellow fg:black"
+symbol = " "
 
 [git_status]
-ahead = "⇡"
-behind = "⇣"
+format = "[$all_status$ahead_behind]($style)"
+style = "bg:yellow fg:black"
+ahead = "⇡${count}"
+behind = "⇣${count}"
 diverged = "⇕"
-untracked = "?"
-modified = "◆"
-staged = "●"
-deleted = "✘"
+untracked = "?${count}"
+modified = "!${count}"
+staged = "+${count}"
+deleted = "✘${count}"
+conflicted = "~${count}"
 
-[nodejs]
-format = "[$symbol($version)]($style) "
+[character]
+success_symbol = "[❯](bold cyan)"
+error_symbol = "[❯](bold red)"
 
-[python]
-format = "[$symbol($version)]($style) "
-
-[rust]
-format = "[$symbol($version)]($style) "
-
-[golang]
-format = "[$symbol($version)]($style) "
-
-[docker_context]
-format = "[$symbol$context]($style) "
+[time]
+disabled = false
+format = "[ at $time]($style)"
+style = "dimmed white"
+time_format = "%H:%M:%S"
 
 [cmd_duration]
 min_time = 2000
 format = "[$duration]($style) "
+style = "dimmed yellow"
+
+[nodejs]
+format = "[ $symbol$version](green) "
+symbol = " "
+
+[python]
+format = "[ $symbol$version](yellow) "
+symbol = " "
+
+[rust]
+format = "[ $symbol$version](red) "
+symbol = " "
+
+[golang]
+format = "[ $symbol$version](cyan) "
+symbol = " "
+
+[dotnet]
+format = "[ $symbol$version](purple) "
+symbol = " "
+
+[docker_context]
+format = "[ $symbol$context](blue) "
+symbol = " "

@@ -299,6 +299,30 @@ offer_macos_defaults() {
 }
 
 # =============================================================================
+# Claude Code Config
+# =============================================================================
+
+install_claude_config() {
+    header "Claude Code Configuration"
+
+    local claude_repo="$HOME/code/github/claude"
+
+    if [[ ! -d "$claude_repo" ]]; then
+        info "Cloning Claude config repo..."
+        mkdir -p "$HOME/code/github"
+        git clone https://github.com/Saturate/claude.git "$claude_repo"
+    else
+        info "Claude config repo already exists, pulling latest..."
+        git -C "$claude_repo" pull
+    fi
+
+    if [[ -f "$claude_repo/install.sh" ]]; then
+        info "Running Claude config install..."
+        bash "$claude_repo/install.sh" --force
+    fi
+}
+
+# =============================================================================
 # Completion Message
 # =============================================================================
 
@@ -355,6 +379,7 @@ main() {
     install_dotfiles
     install_shared_configs
     offer_macos_defaults
+    install_claude_config
     show_completion
 }
 
