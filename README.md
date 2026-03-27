@@ -13,10 +13,15 @@ windows/         Windows setup (WinGet, PowerShell profile, install script)
 
 ## macOS
 
-One-command setup:
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/Saturate/dotfiles/master/macos/install.sh)
+```
+
+Or clone and run locally:
 
 ```bash
-./macos/install.sh
+git clone https://github.com/Saturate/dotfiles.git ~/code/github/dotfiles
+cd ~/code/github/dotfiles && ./macos/install.sh
 ```
 
 Installs Homebrew packages, shell config, AeroSpace (tiling WM), Ghostty, Starship prompt, and modern CLI tools.
@@ -33,7 +38,14 @@ The `linux/` directory is for:
 
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-.\windows\install.ps1
+irm https://raw.githubusercontent.com/Saturate/dotfiles/master/windows/install.ps1 | iex
+```
+
+Or clone and run locally:
+
+```powershell
+git clone https://github.com/Saturate/dotfiles.git $env:USERPROFILE\code\github\dotfiles
+& "$env:USERPROFILE\code\github\dotfiles\windows\install.ps1"
 ```
 
 Installs apps via WinGet, sets up PowerShell profile with Starship, modern CLI aliases (eza, bat, fd, rg, zoxide), and deploys shared configs.
@@ -51,7 +63,7 @@ These configs live in `common/` and work across all OSes:
 | [Starship](https://starship.rs) | Cross-platform prompt | `common/starship.toml` |
 | [Ghostty](https://ghostty.org) | Terminal | `common/ghostty/config` |
 | [LazyVim](https://www.lazyvim.org) | Neovim IDE | `common/nvim/` |
-| [delta](https://github.com/dandyleone/delta) | Git diff pager | `common/.gitconfig` |
+| [delta](https://github.com/dandavison/delta) | Git diff pager | `common/.gitconfig` |
 | Git | 1Password SSH signing, rebase-on-pull | `common/.gitconfig` |
 
 ## Git signing

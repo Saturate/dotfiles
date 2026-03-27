@@ -2,6 +2,18 @@
 # Run as Administrator in PowerShell:
 #   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 #   .\install.ps1
+#
+# Or run without cloning:
+#   irm https://raw.githubusercontent.com/Saturate/dotfiles/master/windows/install.ps1 | iex
+
+# Bootstrap: if not running from repo, clone and re-run
+if (-not $PSScriptRoot -or -not (Test-Path "$PSScriptRoot\Microsoft.PowerShell_profile.ps1")) {
+    Write-Host "Bootstrapping: cloning dotfiles..." -ForegroundColor Cyan
+    $tmpDir = Join-Path $env:TEMP "dotfiles-$(Get-Random)"
+    git clone --depth 1 https://github.com/Saturate/dotfiles.git $tmpDir
+    & "$tmpDir\windows\install.ps1"
+    exit
+}
 
 Write-Host "`n========================================" -ForegroundColor Blue
 Write-Host "     Windows Setup Script" -ForegroundColor Blue

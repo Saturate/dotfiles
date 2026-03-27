@@ -33,27 +33,25 @@ header() { echo -e "\n${BLUE}=== $1 ===${NC}\n"; }
 # Script Directory Detection
 # =============================================================================
 
-GITHUB_RAW="https://raw.githubusercontent.com/Saturate/dotfiles/master/macos"
+GITHUB_REPO="https://github.com/Saturate/dotfiles.git"
 
-# Detect if running from local repo or remote curl
+# Detect if running from local repo or remote (curl pipe)
 if [[ -n "${BASH_SOURCE[0]}" && -f "${BASH_SOURCE[0]}" ]]; then
-    # Local execution
     LOCAL_REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     REPO_ROOT="$(cd "$LOCAL_REPO/.." && pwd)"
-    BREWFILE="$LOCAL_REPO/Brewfile"
-    REMOTE_MODE=false
 else
-    # Running from curl
-    BREWFILE="$HOME/Brewfile"
-    REMOTE_MODE=true
+    # Running from curl - clone to temp dir and re-run from there
+    header "Bootstrapping"
 
-    header "Downloading files"
+    TMPDIR="$(mktemp -d)"
+    info "Cloning dotfiles to $TMPDIR..."
+    git clone --depth 1 "$GITHUB_REPO" "$TMPDIR/dotfiles"
 
-    info "Fetching Brewfile..."
-    curl -fsSL "$GITHUB_RAW/Brewfile" -o "$BREWFILE"
-
-    info "Files downloaded"
+    info "Re-running install from cloned repo..."
+    exec bash "$TMPDIR/dotfiles/macos/install.sh" "$@"
 fi
+
+BREWFILE="$LOCAL_REPO/Brewfile"
 
 # =============================================================================
 # Preflight Checks
@@ -193,18 +191,13 @@ install_dotfiles() {
             mv "$target" "$backup"
         fi
 
-        if [[ "$REMOTE_MODE" == true ]]; then
-            info "Downloading $file..."
-            curl -fsSL "$GITHUB_RAW/$file" -o "$target"
-        else
-            local source="$LOCAL_REPO/$file"
-            if [[ ! -f "$source" ]]; then
-                warn "Source file not found: $source (skipping)"
-                continue
-            fi
-            info "Copying $file..."
-            cp "$source" "$target"
+        local source="$LOCAL_REPO/$file"
+        if [[ ! -f "$source" ]]; then
+            warn "Source file not found: $source (skipping)"
+            continue
         fi
+        info "Copying $file..."
+        cp "$source" "$target"
 
         info "Installed $file"
     done
@@ -212,11 +205,6 @@ install_dotfiles() {
 
 install_shared_configs() {
     header "Installing Shared Configs"
-
-    if [[ "$REMOTE_MODE" == true ]]; then
-        warn "Shared configs require local repo clone (skipping)"
-        return
-    fi
 
     local common_dir="$REPO_ROOT/common"
 
@@ -274,10 +262,6 @@ install_shared_configs() {
 # =============================================================================
 
 offer_macos_defaults() {
-    if [[ "$REMOTE_MODE" == true ]]; then
-        return
-    fi
-
     local defaults_script="$LOCAL_REPO/macos-defaults.sh"
     if [[ ! -f "$defaults_script" ]]; then
         return
@@ -332,11 +316,6 @@ show_completion() {
     echo ""
     echo "Your Mac is now set up with all packages and dotfiles!"
     echo ""
-
-    if [[ "$REMOTE_MODE" == true ]]; then
-        info "Brewfile saved to: ~/Brewfile"
-        echo ""
-    fi
 
     info "Next steps:"
     echo ""
