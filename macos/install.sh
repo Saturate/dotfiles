@@ -286,23 +286,23 @@ offer_macos_defaults() {
 # Claude Code Config
 # =============================================================================
 
-install_claude_config() {
-    header "Claude Code Configuration"
+install_agent_config() {
+    header "Agent Configuration"
 
-    local claude_repo="$HOME/code/github/claude"
+    local agents_repo="$HOME/code/github/agents"
 
-    if [[ ! -d "$claude_repo" ]]; then
-        info "Cloning Claude config repo..."
+    if [[ ! -d "$agents_repo" ]]; then
+        info "Cloning agents config repo..."
         mkdir -p "$HOME/code/github"
-        git clone https://github.com/Saturate/claude.git "$claude_repo"
+        git clone https://github.com/Saturate/agents.git "$agents_repo"
     else
-        info "Claude config repo already exists, pulling latest..."
-        git -C "$claude_repo" pull
+        info "Agents config repo already exists, pulling latest..."
+        git -C "$agents_repo" pull
     fi
 
-    if [[ -f "$claude_repo/install.sh" ]]; then
-        info "Running Claude config install..."
-        bash "$claude_repo/install.sh" --force
+    if [[ -f "$agents_repo/install.sh" ]]; then
+        info "Running agents config install..."
+        bash "$agents_repo/install.sh" --force
     fi
 }
 
@@ -358,7 +358,7 @@ main() {
     install_dotfiles
     install_shared_configs
     offer_macos_defaults
-    install_claude_config
+    install_agent_config
     show_completion
 }
 
