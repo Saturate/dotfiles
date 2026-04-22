@@ -73,6 +73,7 @@ $packages = @(
     "ajeetdsouza.zoxide"
     "junegunn.fzf"
     "dandavison.delta"
+    "jqlang.jq"
 
     # Productivity
     "AgileBits.1Password"
