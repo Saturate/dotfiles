@@ -127,4 +127,5 @@ alias code.='code .'
 # Shortcuts
 # =============================================================================
 alias notes='cd "$HOME/Library/CloudStorage/Dropbox/Obsidian/Allan/"'
-alias clauded='claude --dangerously-skip-permissions'
+# Clear screen + launch Claude Code with permissions bypassed (matches Omarchy's cx)
+alias cx='printf "\033[2J\033[3J\033[H" && claude --permission-mode bypassPermissions'
